@@ -27,6 +27,7 @@ public class Sort_Array {
             e.printStackTrace();
         }
     }
+    
     public Sort_Array(List<Integer> arr) {
     	this.array = arr;
     }
@@ -125,8 +126,9 @@ public class Sort_Array {
     	return sortedArray;
     }
 
-    public ArrayList<Integer> countingSort(List<Integer> list,boolean printSteps){
+    public ArrayList<Integer> countingSort(List<Integer> list, boolean printSteps){
         ArrayList<Integer> res = new ArrayList<>();
+        if(list.size() == 0) return res; // If empty return empty array
         int [] countingArr = new int[maxNum(list) + 1];
 
         for(int num : list) countingArr[num] ++;

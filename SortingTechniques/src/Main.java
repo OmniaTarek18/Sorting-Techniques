@@ -7,7 +7,7 @@ public class Main {
         System.out.print("\nPlease enter the file path: ");
         String filePath = sc.nextLine();
 
-        File file = new File(filePath);
+        File file = new File("C:\\Users\\noura\\OneDrive\\Desktop\\second semester\\data structure\\lab1DataStructure\\Sorting-Techniques\\SortingTechniques\\arr.txt");
         if (file.exists()) {
             int choice;
             do {
