@@ -1,13 +1,31 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Sort_Array {
 	
     List<Integer> array;
 
     //constructor to initialize the array from a file
-    public Sort_Array() {
-        
+    public Sort_Array(File file) {
+        try {
+            Scanner sc = new Scanner(file);
+            String str = sc.nextLine();
+            String[] arrStrings = str.split(",");
+            if (arrStrings.length == 1 && arrStrings[0].isEmpty())
+                array = new ArrayList<Integer>(){};
+            else {
+                array = new ArrayList<Integer>();
+                for(int i = 0; i < arrStrings.length; i++){
+                    array.add(Integer.parseInt(arrStrings[i]));
+                }
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // Simple Sort (Insertion sort) O(n2)
