@@ -107,12 +107,9 @@ public class Sort_Array {
 
     public void countingSort(List<Integer> list,boolean printSteps){
         ArrayList<Integer> res = new ArrayList<>();
-        ArrayList<Integer> countingArr = new ArrayList<>();
+        int [] countingArr = new int[maxNum(list) + 1];
 
-        // Initialize countingArr with zeros
-        for(int i = 0; i < maxNum(list) + 1; i++) countingArr.add(0);
-
-        for(int num : list) countingArr.set(num, countingArr.get(num) + 1);
+        for(int num : list) countingArr[num] ++;
 
         // Compute prefix sum of counting array
         prefixSum(countingArr);
@@ -121,9 +118,9 @@ public class Sort_Array {
         for(int i = 0; i <list.size(); i++) res.add(null);
 
         for(int i = list.size() - 1; i >= 0; i--){
-            int index = countingArr.get(list.get(i));
+            int index = countingArr[list.get(i)];
             res.set(index - 1, list.get(i)); // Decrement index by 1 to get the position of the element
-            countingArr.set(list.get(i), index - 1); // Decrement index by 1 and save it in countingArr
+            countingArr[list.get(i)] =  index - 1; // Decrement index by 1 and save it in countingArr
             if(printSteps) System.out.println(res);
         }
     }
@@ -136,9 +133,9 @@ public class Sort_Array {
         return max;
     }
 
-    private void prefixSum(ArrayList<Integer> arr){
-        for(int i = 1; i < arr.size(); i++){
-            arr.set(i, arr.get(i - 1) + arr.get(i));
+    private void prefixSum(int [] arr){
+        for(int i = 1; i < arr.length; i++){
+            arr[i]  += arr[i -1];
         }
     }
 
