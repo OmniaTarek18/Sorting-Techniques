@@ -10,11 +10,31 @@ public class Sort_Array {
         
     }
 
-    // Simple Sort O(n2)
-    public void simpleSort(boolean intermediate) {
-    	
-
+    // Simple Sort (Insertion sort) O(n2)
+    public List<Integer> simpleSort(boolean intermediate) {
+    	List<Integer> sortedArray = new ArrayList<>(array);
+    	insertionSort(sortedArray, intermediate);
+    	return sortedArray;
     }
+
+    public static void insertionSort(List<Integer> list, boolean intermediate) {
+        if (intermediate) {
+            System.out.println(list); // Print the list before sorting
+        }
+        for (int i = 1; i < list.size(); i++) {
+            int temp = list.get(i);
+            int j = i - 1;
+            while (j >= 0 && list.get(j) > temp) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, temp);
+            if (intermediate) {
+                System.out.println(list);
+            }
+        }
+		
+	}
 
     // Efficient Sort (Merge Sort) O(n lg n)
     public List<Integer> efficientSort(boolean intermediate) {
