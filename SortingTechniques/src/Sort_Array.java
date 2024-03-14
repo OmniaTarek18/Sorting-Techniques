@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Sort_Array {
 	
-    List<Integer> array;
+    List<Integer> array = new ArrayList <>();
 
     //constructor to initialize the array from a file
     public Sort_Array(File file) {
@@ -27,7 +27,9 @@ public class Sort_Array {
             e.printStackTrace();
         }
     }
-
+    public Sort_Array(List<Integer> arr) {
+    	this.array = arr;
+    }
     // Simple Sort (Insertion sort) O(n2)
     public List<Integer> simpleSort(boolean intermediate) {
     	List<Integer> sortedArray = new ArrayList<>(array);
