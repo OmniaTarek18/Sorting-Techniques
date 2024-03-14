@@ -98,9 +98,48 @@ public class Sort_Array {
     }
 
 
-    // Non-Comparison Sort O(n) 
-    public void nonComparisonSort(boolean intermediate) {
+     // Non-Comparison Sort (Counting Sort) O(n) 
+     public List<Integer> nonComparisonSort(boolean intermediate) {
+        List<Integer> sortedArray = new ArrayList<>(array);
+    	countingSort(sortedArray, intermediate);
+    	return sortedArray;
+    }
 
+    public void countingSort(List<Integer> list,boolean printSteps){
+        ArrayList<Integer> res = new ArrayList<>();
+        ArrayList<Integer> countingArr = new ArrayList<>();
+
+        // Initialize countingArr with zeros
+        for(int i = 0; i < maxNum(list) + 1; i++) countingArr.add(0);
+
+        for(int num : list) countingArr.set(num, countingArr.get(num) + 1);
+
+        // Compute prefix sum of counting array
+        prefixSum(countingArr);
+
+        // Initialize res with zeros
+        for(int i = 0; i <list.size(); i++) res.add(null);
+
+        for(int i = list.size() - 1; i >= 0; i--){
+            int index = countingArr.get(list.get(i));
+            res.set(index - 1, list.get(i)); // Decrement index by 1 to get the position of the element
+            countingArr.set(list.get(i), index - 1); // Decrement index by 1 and save it in countingArr
+            if(printSteps) System.out.println(res);
+        }
+    }
+
+    private int maxNum(List<Integer> list) {
+        int max = Integer.MIN_VALUE;
+        for(int num : list){
+            max = Math.max(max, num);
+        }
+        return max;
+    }
+
+    private void prefixSum(ArrayList<Integer> arr){
+        for(int i = 1; i < arr.size(); i++){
+            arr.set(i, arr.get(i - 1) + arr.get(i));
+        }
     }
 
 }
