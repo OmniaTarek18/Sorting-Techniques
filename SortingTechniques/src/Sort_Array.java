@@ -119,11 +119,11 @@ public class Sort_Array {
      // Non-Comparison Sort (Counting Sort) O(n) 
      public List<Integer> nonComparisonSort(boolean intermediate) {
         List<Integer> sortedArray = new ArrayList<>(array);
-    	countingSort(sortedArray, intermediate);
+    	sortedArray = countingSort(sortedArray, intermediate);
     	return sortedArray;
     }
 
-    public void countingSort(List<Integer> list,boolean printSteps){
+    public ArrayList<Integer> countingSort(List<Integer> list,boolean printSteps){
         ArrayList<Integer> res = new ArrayList<>();
         int [] countingArr = new int[maxNum(list) + 1];
 
@@ -141,6 +141,7 @@ public class Sort_Array {
             countingArr[list.get(i)] =  index - 1; // Decrement index by 1 and save it in countingArr
             if(printSteps) System.out.println(res);
         }
+        return res;
     }
 
     private int maxNum(List<Integer> list) {
