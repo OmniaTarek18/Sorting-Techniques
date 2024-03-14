@@ -8,8 +8,11 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import java.util.Random;
 
 class Sort_ArrayTest {
+
+	Random random = new Random();
 
 	// manual small tests
 	@Nested
@@ -29,7 +32,7 @@ class Sort_ArrayTest {
 			expectedResult.add(9);
 			expectedResult.add(15);
 			Sort_Array object = new Sort_Array(expectedResult);
-			Collections.sort(expectedResult);
+			expectedResult = Arrays.asList(0, 0, 4, 9, 10, 12, 15, 15, 28, 34, 48);
 			assertEquals(expectedResult, object.simpleSort(false));
 		}
 
@@ -48,17 +51,26 @@ class Sort_ArrayTest {
 			expectedResult.add(9);
 			expectedResult.add(144);
 			Sort_Array object = new Sort_Array(expectedResult);
-			Collections.sort(expectedResult);
+			expectedResult = Arrays.asList(0, 0, 3, 9, 12, 15, 28, 35, 102, 140, 144);
 			assertEquals(expectedResult, object.efficientSort(false));
 		}
 
 		@Test
 		void testNonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
-
+			expectedResult.add(140);
+			expectedResult.add(28);
+			expectedResult.add(102);
+			expectedResult.add(15);
+			expectedResult.add(0);
+			expectedResult.add(0);
+			expectedResult.add(3);
+			expectedResult.add(35);
+			expectedResult.add(12);
+			expectedResult.add(9);
 			expectedResult.add(18);
 			Sort_Array object = new Sort_Array(expectedResult);
-			Collections.sort(expectedResult);
+			expectedResult = Arrays.asList(0, 0, 3, 9, 12, 15, 18, 28, 35, 102, 140);
 			assertEquals(expectedResult, object.nonComparisonSort(false));
 		}
 
@@ -93,7 +105,7 @@ class Sort_ArrayTest {
 		@Test
 		void testNonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
-			expectedResult.add(1000000);
+			expectedResult.add(10000000);
 			expectedResult.add(24);
 			expectedResult.add(10002);
 			expectedResult.add(15);
@@ -137,13 +149,19 @@ class Sort_ArrayTest {
 			assertEquals(expectedResult, object.efficientSort(false));
 		}
 
-		// @Test
-		// void testNonComparisonSort() {
-		// List<Integer> expectedResult = new ArrayList<>();
-		// Sort_Array object = new Sort_Array(expectedResult);
-		// Collections.sort(expectedResult);
-		// assertEquals(expectedResult, object.nonComparisonSort(false));
-		// }
+		@Test
+		void testNonComparisonSort() {
+			List<Integer> expectedResult = new ArrayList<>();
+			for (int i = 0; i < 1000; i++) {
+				if (random.nextBoolean())
+					expectedResult.add(random.nextInt(20));
+				else
+					expectedResult.add(random.nextInt(10000000 - 10000) + 10000);
+			}
+			Sort_Array object = new Sort_Array(expectedResult);
+			Collections.sort(expectedResult);
+			assertEquals(expectedResult, object.nonComparisonSort(false));
+		}
 
 	}
 
@@ -171,13 +189,15 @@ class Sort_ArrayTest {
 			assertEquals(expectedResult, object.efficientSort(false));
 		}
 
-		// @Test
-		// void testNonComparisonSort() {
-		// List<Integer> expectedResult = new ArrayList<>();
-		// Sort_Array object = new Sort_Array(expectedResult);
-		// Collections.sort(expectedResult);
-		// assertEquals(expectedResult, object.nonComparisonSort(false));
-		// }
+		@Test
+		void testNonComparisonSort() {
+			List<Integer> expectedResult = new ArrayList<>();
+			for (int i = 0; i < 20; i++) {
+				expectedResult.add(i);
+			}
+			Sort_Array object = new Sort_Array(expectedResult);
+			assertEquals(expectedResult, object.nonComparisonSort(false));
+		}
 
 	}
 
@@ -205,16 +225,19 @@ class Sort_ArrayTest {
 			assertEquals(expectedResult, object.efficientSort(false));
 		}
 
-		// @Test
-		// void testNonComparisonSort() {
-		// List<Integer> expectedResult = new ArrayList<>();
-		// Sort_Array object = new Sort_Array(expectedResult);
-		// Collections.sort(expectedResult);
-		// assertEquals(expectedResult, object.nonComparisonSort(false));
-		// }
+		@Test
+		void testNonComparisonSort() {
+			List<Integer> expectedResult = new ArrayList<>();
+			for (int i = 0; i < 1000; i++) {
+				expectedResult.add(i);
+			}
+			Sort_Array object = new Sort_Array(expectedResult);
+		assertEquals(expectedResult, object.nonComparisonSort(false));
+		}
 
 	}
 
+	// average case random input of size 1000
 	@Nested
 	class AverageCaseWithInputOfSize1e3 {
 
@@ -411,10 +434,11 @@ class Sort_ArrayTest {
 		void SimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = -200; i < 200; i++) {
-				expectedResult.add(i);
+				expectedResult.add(random.nextInt(400)-200);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
+			Collections.sort(expectedResult);
 			Sort_Array object = new Sort_Array(list);
 			// System.out.println(list);
 			// long startTime = System.currentTimeMillis();
@@ -430,10 +454,10 @@ class Sort_ArrayTest {
 		void EfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = -200; i < 200; i++) {
-				expectedResult.add(i);
+				expectedResult.add(random.nextInt(400)-200);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
-			Collections.shuffle(list);
+			Collections.sort(expectedResult);
 			Sort_Array object = new Sort_Array(list);
 			// System.out.println(list);
 			// long startTime = System.currentTimeMillis();
@@ -449,10 +473,10 @@ class Sort_ArrayTest {
 		void NonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 400; i++) {
-				expectedResult.add(i);
+				expectedResult.add(random.nextInt(400));
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
-			Collections.shuffle(list);
+			Collections.sort(expectedResult);
 			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
 			// long startTime = System.currentTimeMillis();
@@ -464,18 +488,19 @@ class Sort_ArrayTest {
 		}
 
 	}
+
 	// test special cases (empty array - one element - all elements are duplicated )
 	@Nested
 	class SpecialCases {
-		
+
 		// Method to provide test data as a stream
 		static Stream<List<Integer>> listProvider() {
 			return Stream.of(
 					Arrays.asList(),
 					Arrays.asList(4),
-					Arrays.asList(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
-			);
+					Arrays.asList(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5));
 		}
+
 		@ParameterizedTest
 		@MethodSource("listProvider")
 		void testSimpleSort(List<Integer> expectedResult) {
@@ -499,19 +524,3 @@ class Sort_ArrayTest {
 
 	}
 }
-// fail("Not yet implemented");
-// is used to manually indicate test failure,
-// typically when a specific condition is not met,
-// and you want to provide a custom error message.
-
-// Assertion is used to verify our output with the actual input
-
-// Assertions.assertFalse(false);
-// we want to verify if a condition is true or not
-// if it's true the test fails
-
-// Assertions.assertEquals(,)
-// takes the first parameter as expected output
-// takes the second parameter as actual output
-
-// to run the test just click on run test
