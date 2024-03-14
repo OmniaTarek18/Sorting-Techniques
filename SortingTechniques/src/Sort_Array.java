@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sort_Array {
@@ -16,8 +17,64 @@ public class Sort_Array {
     }
 
     // Efficient Sort (Merge Sort) O(n lg n)
-    public void efficientSort(boolean intermediate) {
+    public List<Integer> efficientSort(boolean intermediate) {
+        List<Integer> sortedArray = new ArrayList<>(array);
+        mergeSort(sortedArray, intermediate);
+        return sortedArray;
+    }
 
+    public static void mergeSort(List<Integer> list, boolean intermediate) {
+    	
+        if (intermediate) {
+            System.out.println(list); // Print the list before sorting
+        }
+        int length = list.size();
+        // base case
+        if (length <= 1)
+            return;
+
+        int middle = length / 2;
+
+        List<Integer> leftList = new ArrayList<>(list.subList(0, middle));
+        List<Integer> rightList = new ArrayList<>(list.subList(middle, length));
+
+        mergeSort(leftList, intermediate);
+        mergeSort(rightList, intermediate);
+
+        merge(leftList, rightList, list, intermediate);
+    }
+
+    public static void merge(List<Integer> leftList, List<Integer> rightList, List<Integer> list, boolean intermediate) {
+        int leftSize = leftList.size();
+        int rightSize = rightList.size();
+        int i = 0, l = 0, r = 0;
+
+        // check the conditions for merging
+        while (l < leftSize && r < rightSize) {
+            if (leftList.get(l) < rightList.get(r)) {
+                list.set(i, leftList.get(l));
+                i++;
+                l++;
+            } else {
+                list.set(i, rightList.get(r));
+                i++;
+                r++;
+            }
+        }
+        while (l < leftSize) {
+            list.set(i, leftList.get(l));
+            i++;
+            l++;
+        }
+        while (r < rightSize) {
+            list.set(i, rightList.get(r));
+            i++;
+            r++;
+        }
+
+        if (intermediate) {
+            System.out.println(list);
+        }
     }
 
 
@@ -25,5 +82,5 @@ public class Sort_Array {
     public void nonComparisonSort(boolean intermediate) {
 
     }
-    
+
 }
