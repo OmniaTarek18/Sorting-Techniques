@@ -1,4 +1,4 @@
-public class main {
+public class Main {
     public static void main(String[] args) {
         //Command Line Interface 
         // take the file path from user 
