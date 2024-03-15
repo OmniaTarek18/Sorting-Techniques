@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Sort_Array {
 	
-    List<Integer> array;
+    List<Integer> array = new ArrayList <>();
 
     //constructor to initialize the array from a file
     public Sort_Array(File file) {
@@ -26,11 +26,11 @@ public class Sort_Array {
             //e.printStackTrace();
         }
     }
-
-    public Sort_Array() throws Exception {
-        System.out.println("This");
+    
+    public Sort_Array(List<Integer> arr) {
+    	this.array = arr;
     }
-
+    
     // Simple Sort (Insertion sort) O(n2)
     public List<Integer> simpleSort(boolean intermediate) {
     	List<Integer> sortedArray = new ArrayList<>(array);
@@ -126,8 +126,9 @@ public class Sort_Array {
     	return sortedArray;
     }
 
-    public ArrayList<Integer> countingSort(List<Integer> list,boolean printSteps){
+    public ArrayList<Integer> countingSort(List<Integer> list, boolean printSteps){
         ArrayList<Integer> res = new ArrayList<>();
+        if(list.size() == 0) return res; // If empty return empty array
         int [] countingArr = new int[maxNum(list) + 1];
 
         for(int num : list) countingArr[num] ++;
