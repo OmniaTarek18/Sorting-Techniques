@@ -1,17 +1,17 @@
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
+import java.io.File;
+
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.Random;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 class Sort_ArrayTest {
 
@@ -527,4 +527,62 @@ class Sort_ArrayTest {
 		}
 
 	}
+
+	// test using file
+	@Nested
+	class TestUsingFile {
+
+		List<Integer> readInputFromFile(File file) {
+			List<Integer> arr = new ArrayList<>();
+			try {
+				Scanner sc = new Scanner(file);
+				String str = sc.nextLine();
+				String[] arrStrings = str.split(",");
+				for (String val : arrStrings) {
+					arr.add(Integer.parseInt(val));
+				}
+			} catch (Exception e) {
+				fail("File is Empty");
+			}
+			return arr;
+		}
+
+		@ParameterizedTest
+		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
+				"SortingTechniques\\src\\testcase3.txt" })
+		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		void SimpleSort(String path) {
+			File file = new File(path);
+			Sort_Array obj = new Sort_Array(file);
+			List<Integer> expected = readInputFromFile(file);
+			Collections.sort(expected);
+			assertEquals(expected, obj.simpleSort(false));
+		}
+		
+		@ParameterizedTest
+		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
+				"SortingTechniques\\src\\testcase3.txt" })
+		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		void EfficientSort(String path) {
+			File file = new File(path);
+			Sort_Array obj = new Sort_Array(file);
+			List<Integer> expected = readInputFromFile(file);
+			Collections.sort(expected);
+			assertEquals(expected, obj.efficientSort(false));
+		}
+		
+		@ParameterizedTest
+		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
+				"SortingTechniques\\src\\testcase3.txt" })
+		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		void nonComparisonSort(String path) {
+			File file = new File(path);
+			Sort_Array obj = new Sort_Array(file);
+			List<Integer> expected = readInputFromFile(file);
+			Collections.sort(expected);
+			assertEquals(expected, obj.nonComparisonSort(false));
+		}
+
+	}
+
 }
