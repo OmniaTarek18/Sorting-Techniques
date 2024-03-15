@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,9 +22,13 @@ public class Sort_Array {
                 }
             }
             sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
         }
+    }
+
+    public Sort_Array() throws Exception {
+        System.out.println("This");
     }
 
     // Simple Sort (Insertion sort) O(n2)
