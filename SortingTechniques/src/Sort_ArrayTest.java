@@ -245,27 +245,20 @@ class Sort_ArrayTest {
 	class AverageCaseWithInputOfSize1e3 {
 
 		@Test
-		// @RepeatedTest(10)
-		void testSimpleForWorstCaseAverageInput1e3() {
+		void testSimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 1000; i++) {
 				expectedResult.add(i);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.simpleSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
-		// @RepeatedTest(10)
-		void testEfficientSortAverageInput1e3() {
+		void testEfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 1000; i++) {
 				expectedResult.add(i);
@@ -273,31 +266,20 @@ class Sort_ArrayTest {
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
 			Sort_Array object = new Sort_Array(list);
-			// System.out.println(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.efficientSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
-		// @RepeatedTest(10)
-		void testNonComparisonSortAverageInput1e3() {
+		void testNonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 1000; i++) {
 				expectedResult.add(i);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.nonComparisonSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
@@ -308,27 +290,20 @@ class Sort_ArrayTest {
 	class AverageCaseWithInputOfSize1e4 {
 
 		@Test
-		// @RepeatedTest(10)
-		void testSimpleForWorstCaseAverageInput1e4() {
+		void testSimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 10000; i++) {
 				expectedResult.add(i);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.simpleSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
-		// @RepeatedTest(10)
-		void testEfficientSortAverageInput1e4() {
+		void testEfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 10000; i++) {
 				expectedResult.add(i);
@@ -336,18 +311,13 @@ class Sort_ArrayTest {
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
 			Sort_Array object = new Sort_Array(list);
-			// System.out.println(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.efficientSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
 		// @RepeatedTest(10)
-		void testNonComparisonSortAverageInput1e4() {
+		void testNonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 10000; i++) {
 				expectedResult.add(i);
@@ -371,7 +341,6 @@ class Sort_ArrayTest {
 	class AverageCaseWithInputOfSize1e5 {
 
 		@Test
-		// @RepeatedTest(10)
 		@Timeout(value = 3, unit = TimeUnit.SECONDS)
 		void SimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
@@ -380,18 +349,12 @@ class Sort_ArrayTest {
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.simpleSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
-		// @RepeatedTest(10)
 		void EfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 100000; i++) {
@@ -400,17 +363,11 @@ class Sort_ArrayTest {
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
 			Sort_Array object = new Sort_Array(list);
-			// System.out.println(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.efficientSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
 		@Test
-		// @RepeatedTest(10)
 		void NonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 100000; i++) {
@@ -418,13 +375,8 @@ class Sort_ArrayTest {
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			long startTime = System.currentTimeMillis();
 			list = object.nonComparisonSort(false);
-			long endTime = System.currentTimeMillis();
-			long elapsedTime = endTime - startTime;
-			System.out.println(elapsedTime);
 			assertEquals(expectedResult, list);
 		}
 
@@ -550,7 +502,7 @@ class Sort_ArrayTest {
 		@ParameterizedTest
 		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
 				"SortingTechniques\\src\\testcase3.txt" })
-		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		@Timeout(value = 3, unit = TimeUnit.SECONDS)
 		void SimpleSort(String path) {
 			File file = new File(path);
 			Sort_Array obj = new Sort_Array(file);
@@ -558,11 +510,11 @@ class Sort_ArrayTest {
 			Collections.sort(expected);
 			assertEquals(expected, obj.simpleSort(false));
 		}
-		
+
 		@ParameterizedTest
 		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
 				"SortingTechniques\\src\\testcase3.txt" })
-		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		@Timeout(value = 3, unit = TimeUnit.SECONDS)
 		void EfficientSort(String path) {
 			File file = new File(path);
 			Sort_Array obj = new Sort_Array(file);
@@ -570,11 +522,11 @@ class Sort_ArrayTest {
 			Collections.sort(expected);
 			assertEquals(expected, obj.efficientSort(false));
 		}
-		
+
 		@ParameterizedTest
 		@ValueSource(strings = { "SortingTechniques\\src\\testcase1.txt", "SortingTechniques\\src\\testcase2.txt",
 				"SortingTechniques\\src\\testcase3.txt" })
-		@Timeout(value = 3 , unit = TimeUnit.SECONDS )
+		@Timeout(value = 3, unit = TimeUnit.SECONDS)
 		void nonComparisonSort(String path) {
 			File file = new File(path);
 			Sort_Array obj = new Sort_Array(file);
@@ -585,4 +537,107 @@ class Sort_ArrayTest {
 
 	}
 
+	// test Efficiency 
+		// average case random input of size 10000
+		@Nested
+		class TestInputOfSize1e4 {
+	
+			@Test
+			// @RepeatedTest(10)
+			@Timeout(value = 3 , unit = TimeUnit.SECONDS)
+			void testSimpleSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 10000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.simpleSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+			@Test
+			// @RepeatedTest(10)
+			void testEfficientSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 10000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.efficientSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+			@Test
+			// @RepeatedTest(10)
+			void testNonComparisonSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 10000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.nonComparisonSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+		}
+
+		// average case random input of size 100000
+		@Nested
+		class TestInputOfSize1e5 {
+	
+			@Test
+			// @RepeatedTest(10)
+			void testSimpleSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 100000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.simpleSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+			@Test
+			// @RepeatedTest(10)
+			void testEfficientSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 100000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.efficientSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+			@Test
+			// @RepeatedTest(10)
+			void testNonComparisonSort() {
+				List<Integer> list = new ArrayList<>();
+				for (int i = 0; i < 100000; i++) {
+					list.add(random.nextInt(1000));
+				}
+				Sort_Array object = new Sort_Array(list);
+				long startTime = System.currentTimeMillis();
+				list = object.nonComparisonSort(false);
+				long endTime = System.currentTimeMillis();
+				long elapsedTime = endTime - startTime;
+				System.out.println("time is "+ elapsedTime + " ms");
+			}
+	
+		}
 }
