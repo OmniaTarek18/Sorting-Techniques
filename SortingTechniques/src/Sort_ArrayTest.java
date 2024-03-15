@@ -5,10 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 class Sort_ArrayTest {
 
@@ -232,7 +235,7 @@ class Sort_ArrayTest {
 				expectedResult.add(i);
 			}
 			Sort_Array object = new Sort_Array(expectedResult);
-		assertEquals(expectedResult, object.nonComparisonSort(false));
+			assertEquals(expectedResult, object.nonComparisonSort(false));
 		}
 
 	}
@@ -369,7 +372,8 @@ class Sort_ArrayTest {
 
 		@Test
 		// @RepeatedTest(10)
-		void testSimpleForWorstCaseAverageInput1e5() {
+		@Timeout(value = 3, unit = TimeUnit.SECONDS)
+		void SimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 100000; i++) {
 				expectedResult.add(i);
@@ -388,7 +392,7 @@ class Sort_ArrayTest {
 
 		@Test
 		// @RepeatedTest(10)
-		void testEfficientSortAverageInput1e5() {
+		void EfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 100000; i++) {
 				expectedResult.add(i);
@@ -407,7 +411,7 @@ class Sort_ArrayTest {
 
 		@Test
 		// @RepeatedTest(10)
-		void testNonComparisonSortAverageInput1e5() {
+		void NonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 100000; i++) {
 				expectedResult.add(i);
@@ -416,11 +420,11 @@ class Sort_ArrayTest {
 			Collections.shuffle(list);
 			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
+			long startTime = System.currentTimeMillis();
 			list = object.nonComparisonSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
+			long endTime = System.currentTimeMillis();
+			long elapsedTime = endTime - startTime;
+			System.out.println(elapsedTime);
 			assertEquals(expectedResult, list);
 		}
 
@@ -434,7 +438,7 @@ class Sort_ArrayTest {
 		void SimpleSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = -200; i < 200; i++) {
-				expectedResult.add(random.nextInt(400)-200);
+				expectedResult.add(random.nextInt(400) - 200);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
@@ -454,7 +458,7 @@ class Sort_ArrayTest {
 		void EfficientSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = -200; i < 200; i++) {
-				expectedResult.add(random.nextInt(400)-200);
+				expectedResult.add(random.nextInt(400) - 200);
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.sort(expectedResult);
