@@ -316,7 +316,6 @@ class Sort_ArrayTest {
 		}
 
 		@Test
-		// @RepeatedTest(10)
 		void testNonComparisonSort() {
 			List<Integer> expectedResult = new ArrayList<>();
 			for (int i = 0; i < 10000; i++) {
@@ -324,13 +323,8 @@ class Sort_ArrayTest {
 			}
 			List<Integer> list = new ArrayList<>(expectedResult);
 			Collections.shuffle(list);
-			// System.out.println(list);
 			Sort_Array object = new Sort_Array(list);
-			// long startTime = System.currentTimeMillis();
 			list = object.nonComparisonSort(false);
-			// long endTime = System.currentTimeMillis();
-			// long elapsedTime = endTime - startTime;
-			// System.out.println("time is "+ elapsedTime + " ms");
 			assertEquals(expectedResult, list);
 		}
 
